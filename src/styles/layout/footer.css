@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styling for the Footer component */
+.footer {
+  @apply bg-white dark:bg-gray-800 shadow-md relative z-10;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Container for canvas and content */
+.footer__container {
+  @apply relative overflow-hidden;
+}
+
+/* Canvas styling to cover the full area */
+.footer__canvas {
+  @apply absolute inset-0;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Ensure the canvas is behind other content by default */
+  pointer-events: none; /* Prevent the canvas from capturing mouse events */
+}
+
+/* Primary text styling */
+.footer__text {
+  @apply text-gray-500 dark:text-gray-300 text-sm;
+}
+
+/* Link styling */
+.footer__link {
+  @apply text-gray-500 dark:text-gray-300 text-sm hover:text-blue-400;
+}
+
+/* List of links styling */
+.footer__links {
+  @apply flex items-center space-x-4 mt-2 md:mt-0;
+}
+
+/* Content above canvas */
+.footer__content {
+  @apply container mx-auto py-4 px-6 flex flex-col md:flex-row items-center justify-between relative z-10;
+}
+
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    @apply bg-gray-800 dark:bg-gray-800;
+  }
+}
+
+
+/* Accessibility enhancements: visually hidden elements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border-width: 0;
+}
