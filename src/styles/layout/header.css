@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styling for the header component */
+header {
+  /* Setting core layout and positioning */
+  @apply sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md;
+  /* Smooth transition for background color and shadow */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Container to keep content aligned */
+/* Uses responsive design to make the container adapt to screens, keep horizontal centering*/
+.container {
+  @apply container mx-auto py-4 px-6 flex items-center justify-between;
+}
+
+/* Canvas - logo styling */
+.logo-canvas {
+  height: 40px; /* setting a fixed heigh for the image to be displayed */
+  width: 40px; /* setting a fixed width for the image to be displayed */
+  position: relative; /* Enables absolute positioning within this context */
+}
+
+/* Link logo styling to control font and text options, and use CSS to transition */
+.header_logo-link {
+  @apply flex items-center text-gray-800 dark:text-white font-bold text-xl;
+}
+
+/* Links for desktop styling: transition color options. */
+.header_nav-links a {
+  @apply text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Button style rules, used to handle dark/light mode  */
+.header_theme-toggle-button {
+  @apply text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 focus:outline-none;
+}
+
+/* Menu mobile, style rules in mobile version.*/
+.header_mobile-menu {
+  @apply md:hidden bg-gray-100 dark:bg-gray-700 py-2 px-6;
+}
+
+/* mobile navigation */
+.header_mobile-menu_nav-links {
+  @apply flex flex-col items-start space-y-3;
+}
+
+/* Media query for high contrast mode */
+@media (prefers-contrast: more) {
+  .header_logo-link,
+  .header_nav-links a,
+  .header_theme-toggle-button {
+    color: var(--color-hc-text); /* Update the text color */
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .logo-canvas {
+        width: 30px;
+        height: 30px;
+    }
+}
