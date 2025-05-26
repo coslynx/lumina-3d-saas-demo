@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styling for the MinimalLayout component */
+.app-container {
+  /* Core layout with flexbox */
+  @apply min-h-screen flex flex-col;
+  /* Responsiveness and theme colors with transition effects */
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Header Styling */
+/* Header is set to stick to the top and set its layering */
+header {
+  @apply sticky top-0 z-50;
+  /* All transitions use the same 3s time, to be uniform across all transitions */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Main Content Styling */
+main.main-content {
+  @apply flex-1 container mx-auto py-8 px-4;
+  /* All transitions use the same 3s time, to be uniform across all transitions */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsiveness, setting min width for the content and its horizontal padding */
+main.main-content {
+  @apply flex-1 container mx-auto py-8 px-4;
+}
+
+@media (min-width: 768px) {
+ main.main-content {
+    @apply px-6;
+  }
+}
+
+@media (min-width: 1024px) {
+ main.main-content {
+    @apply px-8;
+  }
+}
+
+/* Footer Styling */
+footer {
+  /* Footer will adapt to be responsive with same 3s transition as the above elements, and have layering on it */
+  @apply shadow-md relative z-10;
+  transition: all 0.3s ease-in-out;
+}
+/* Accessibility Enhancements - Focus Styles */
+:focus {
+ outline: 2px solid var(--color-accent);
+ outline-offset: 2px;
+}
+/* Media query for high contrast mode, checking color scheme of OS */
+@media (prefers-contrast: more) {
+ :root {
+ /* Use high contrast color values from root */
+ --color-primary: var(--color-hc-primary); /* Black */
+ --color-secondary: var(--color-hc-secondary); /* Black */
+ --color-accent: var(--color-hc-accent); /* Teal */
+ --color-background: var(--color-hc-background); /* Yellow */
+ --color-text: var(--color-hc-text); /* Black */
+ }
+}
+
+/* CSS for 3D Canvas Element */
+canvas {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: -1; /* Ensure the canvas is behind other content by default */
+ pointer-events: none; /* Prevent the canvas from capturing mouse events */
+}
