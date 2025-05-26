@@ -1,0 +1,70 @@
+Craft a detailed prompt to generate production-ready CSS code for `src/styles/base.css`, adhering to the following requirements:
+
+**Objective:** Generate a comprehensive `base.css` file that establishes global styles, resets, and theming for a 3D landing page application. The CSS should:
+
+*   **CSS Reset and Normalization:** Implement a CSS reset strategy to remove default browser styling inconsistencies, aiming for a consistent foundation across different browsers.
+*   **Typography:** Define a global font family (consistent with `tailwind.config.js`), base font size, line height, and text rendering optimizations for improved readability. Include CSS variables for font sizes and weights to ensure that they may be updated with context.
+*   **Color Palette:** Establish a core color palette using CSS variables, linking to the Tailwind CSS theme where appropriate. Define variables for primary, secondary, accent, background, and text colors, and provide dark mode alternatives. Implement High Contrast Accessibility Color Palette.
+*   **Layout Foundation:** Implement global layout defaults using CSS Grid or Flexbox to establish a base structure for the 3D landing page with full mobile-responsive support and consistent spacing between elements.
+*   **Transitions:** Define smooth transition effects for common UI interactions (e.g., hover, focus states, loading animations). Use CSS transitions and transforms to optimize the effects where possible.
+*   **3D Canvas Styling:** Define CSS rules for the 3D canvas element, ensuring that it is properly positioned and sized within the layout, including layering and interaction considerations. Ensure the canvas integrates and scales appropriately.
+*   **Accessibility:**
+    *   Ensure a minimum contrast ratio of 4.5:1 for all text elements.
+    *   Provide CSS variables for high contrast color options for users with visual impairments.
+    *   Define accessible focus states for interactive elements using clear and visible focus indicators.
+*   **Performance:** Utilize hardware acceleration (CSS transforms, will-change property) to enhance rendering performance, specifically for animated or interactive elements. Limit costly operations such as box-shadows and filters to areas where visual fidelity is critical.
+*   **Theming Support:** Provide dark mode variants for all key styles and CSS variables to reflect the theme implemented in the React components (referencing the theme logic in `Header.tsx`, `Footer.tsx`, `ContactPage.tsx`, `AboutPage.tsx`).
+*   **Code Quality:** The generated code must be well-formatted, use meaningful class names, avoid !important, and minimize inline styles. All variables must be well-named. The code must be well formatted for readability.
+
+**Specific Requirements and Constraints:**
+
+1.  **Project Setup:**
+
+    *   You are working on a React project bootstrapped with Vite, utilizing TypeScript, Three.js, React Three Fiber, React Three Drei, GSAP, Framer Motion, and Tailwind CSS.
+    *   The `package.json` lists the project dependencies and versions, ensure compatibility with the project's toolchain.
+    *   The `tailwind.config.js` file outlines the color palette, typography, and breakpoints. Base global CSS styling decisions and CSS variables on this file.
+2.  **Existing Codebase Analysis:**
+
+    *   Carefully analyze existing CSS files (`src/styles/layout/header.css`, `src/styles/pages/model-showcase.css`, etc.) to identify common patterns, naming conventions, and styling techniques. Adhere to these conventions in the generated code.
+    *   Leverage Tailwind CSS utility classes where appropriate. Avoid overriding Tailwind styles unless absolutely necessary; when you override them, comment reasons for deviations from default.
+    *   The root element should use Inter as the default font.
+3.  **CSS Reset Implementation:**
+
+    *   Apply a CSS reset to normalize styles across browsers. You can use a popular CSS reset library (e.g., normalize.css) or implement a custom reset. The reset should remove default margins, paddings, and borders from all elements. You will need to specify those rules without importing the files, as importing files from outside the given project structure is forbidden.
+    *   Set `box-sizing: border-box` on all elements and `::before`, `::after` pseudo-elements to simplify layout calculations.
+4.  **Global Styles:**
+
+    *   Define global styles for the `body` element, including font family, font size, line height, background color, and text color. Use CSS variables to manage these values and ensure adherence to Tailwind CSS settings.
+    *   Set global transition properties to `transition: all 0.3s ease-in-out;` to enable smooth transitions across the site.
+5.  **3D Canvas Styling:**
+
+    *   Define the proper positioning and sizing for the 3D canvas element (<Canvas /> from React Three Fiber), considering layering with other HTML elements.
+    *   Ensure the canvas integrates seamlessly with the overall layout and adapts responsively to different screen sizes.
+    *   Apply the following base styles to 3D canvases:
+
+    ```css
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Ensure the canvas is behind other content by default */
+      pointer-events: none; /* Prevent the canvas from capturing mouse events */
+    }
+    ```
+
+6.  **Responsive Design:**
+
+    *   Use CSS grid or flexbox for global layout management, establishing a basic grid system. Ensure the CSS implements the proper responsive tags based on existing files and project constraints.
+7.  **Accessibility Color Palette:**
+
+    *   Define the CSS variables for use in theme and add a high-contrast media query.
+    *   Make sure key content still conforms to 4.5:1 contrast level minimum.
+8.   **Final Code Quality Checks:**
+
+    *   All code must have comments, and explain each action.
+    *   Validate the generated CSS to ensure it does not contain syntax errors or warnings.
+    *   The CSS should follow a consistent and readable code style.
+
+Ensure that the response contains only the <structure> tags and nothing else.
