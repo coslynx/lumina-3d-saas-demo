@@ -1,0 +1,158 @@
+/* Styling for the home page with 3D elements and responsive design. Includes key sections like hero, features, and call-to-action areas. */
+
+/* CSS Reset - Removing browser inconsistencies */
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set base font size */
+html {
+  font-size: 16px;
+}
+
+/* 3D Canvas styling - Layering and sizing */
+canvas {
+  position: absolute; /* Absolute positioning for layering */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  z-index: -1; /* Behind other content */
+  pointer-events: none; /* Disables mouse interactions with the canvas */
+
+  /* Use hardware acceleration to improve 3D rendering performance */
+  transform: translateZ(0); /* Applies a 3D transformation to utilize GPU acceleration */
+}
+
+/* Define CSS variables for the color palette */
+:root {
+  /* Light mode */
+  --color-primary: #000000;
+  --color-secondary: #000000;
+  --color-accent: #008080;
+  --color-background: #ffffff;
+  --color-text: #000000;
+  /* High contrast light mode */
+  --color-hc-primary: #000000;
+  --color-hc-secondary: #000000;
+  --color-hc-accent: #008080;
+  --color-hc-background: #ffff00;
+  --color-hc-text: #000000;
+}
+
+/* Styling for the home page container */
+.home {
+    @apply flex flex-col min-h-screen;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    :root {
+    /* Dark mode */
+        --color-primary: #ffffff;
+        --color-secondary: #ffffff;
+        --color-accent: #008080;
+        --color-background: #121212;
+        --color-text: #ffffff;
+    /* High contrast dark mode */
+        --color-hc-primary: #ffff00; /* Yellow */
+        --color-hc-secondary: #ffff00; /* Yellow */
+        --color-hc-accent: #ffff00; /* Yellow */
+        --color-hc-background: #000000; /* Black */
+        --color-hc-text: #ffff00; /* Yellow */
+  }
+}
+
+/* Performance optimization */
+.will-change {
+  will-change: transform, opacity;
+}
+
+/* Styling for the hero section */
+.home__hero {
+    @apply relative flex flex-col justify-center items-center h-screen;
+}
+/* Style rules for responsive changes in max-width. This makes text in the heading have a smaller text size. */
+@media (max-width: 768px) {
+    .home__hero h1 {
+        @apply text-5xl;
+    }
+}
+@media (max-width: 768px) {
+    .home__hero p {
+        @apply text-xl;
+    }
+}
+.home__hero h1 {
+    @apply text-center font-bold text-white;
+    font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive font size */
+}
+
+/* Style rules for all p paragraphs under hero section. The paragraph elements display text, which adapts their font size and margin based on screen size. */
+.home__hero p {
+    @apply text-center text-gray-200 mt-4;
+    font-size: clamp(1rem, 2vw, 1.5rem); /* Responsive font size */
+}
+
+/* Styling for the features section */
+.home__features {
+    @apply py-12;
+}
+
+/* The layout is established using css grid and tailwind utility classes, responsive across a variety of device sizes*/
+.home__features-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+/* Style rules that define the appearance of featured items with the following: full height, flex direction, padding, rounded edges and the display */
+.home__feature-item {
+    @apply p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md h-full flex flex-col justify-between;
+}
+
+/* Style rules when hovering elements, increasing scale and reducing shadows on three axes */
+.home__feature-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+
+/* Media query for high contrast mode */
+@media (prefers-contrast: more) {
+    .home__hero h1, .home__hero p {
+        color: var(--color-hc-text);
+    }
+}
+/* Style rules to style all the Call To Action in a section. Setting margin top and vertical content centering. */
+.home__cta {
+    @apply flex justify-center items-center py-12;
+    margin-top: 2rem; /* Space out the bottom from the other elements */
+}
+/* Style rules that specify styling for action calls to action’s buttons with the follow settings. Bold text, white text and padding */
+.home__cta-button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full focus:outline-none focus:shadow-outline;
+}
+/* Style rules on hover, it changes the background color so the action changes to a darker shade of blue with transitions */
+.home__cta-button:hover {
+    background-color: #3490dc;
+    transition: all 0.3s ease-in-out;
+}
+/* Style rules when the selected media is a prefers-contrast the theme has support for more contrast, increase color and change */
+@media (prefers-contrast: more) {
+    .home__cta-button {
+        background-color: var(--color-hc-accent);
+        color: var(--color-hc-text);
+        border: 1px solid var(--color-hc-primary);
+    }
+
+    .home__hero h1, .home__hero p {
+        color: var(--color-hc-text);
+    }
+}
