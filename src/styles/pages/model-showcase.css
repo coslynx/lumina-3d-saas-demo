@@ -1,0 +1,39 @@
+.model-showcase_container {
+  @apply container mx-auto py-8;
+}
+
+.model-showcase_title {
+  @apply text-3xl font-bold mb-4 text-center;
+}
+
+.model-showcase_select {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2;
+}
+
+.model-showcase_canvas-container {
+  @apply relative;
+}
+
+.model-showcase_canvas {
+  @apply absolute top-0 left-0 w-full h-full;
+  z-index: 0; /* Ensure the canvas is behind other content by default */
+  pointer-events: auto; /* Enable pointer events for OrbitControls*/
+}
+
+.model-showcase_error-message {
+  @apply text-red-500 mt-4 text-center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .model-showcase_title {
+    @apply text-2xl;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .model-showcase_container {
+    @apply dark:bg-gray-800 dark:text-gray-200;
+  }
+}
