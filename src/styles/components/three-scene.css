@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Style for the main container of the ThreeScene component */
+.three-scene-container {
+  @apply relative w-full h-full;
+}
+
+/* Style for the 3D canvas within the ThreeScene */
+.three-scene-canvas {
+  @apply absolute top-0 left-0 w-full h-full;
+  z-index: 0; /* Ensure the canvas is behind other content by default */
+  pointer-events: auto; /* Enable pointer events for OrbitControls*/
+  /* Use hardware acceleration to improve 3D rendering performance */
+  transform: translateZ(0); /* Applies a 3D transformation to utilize GPU acceleration */
+}
+
+/* Accessibility enhancements: visually hidden elements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border-width: 0;
+}
+
+/* Style for a loading indicator */
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: theme('colors.gray.600');
+  font-size: 1.2rem;
+  z-index: 10;
+  animation: pulse 2s infinite;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .three-scene-container {
+    background-color: theme('colors.gray.800'); /* Dark background */
+  }
+
+  .loading-indicator {
+    color: theme('colors.gray.300'); /* Lighter text color in dark mode */
+  }
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 768px) {
+  .three-scene-container {
+    /* Adjust container styles for smaller screens if needed */
+  }
+}
+
+/* Style for when a component is loading assets and needs to be lower power */
+.three-scene-low-power {
+  /* Disable advanced calculations */
+  /* Drop pixel ratio, and tone mapping*/
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+}
