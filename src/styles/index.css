@@ -1,0 +1,124 @@
+/* Global styles, resets, and theming for the 3D landing page */
+
+/* CSS Reset */
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, sans-serif; /* set font-family to Inter as default */
+  line-height: 1.5;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Set base font size */
+html {
+  font-size: 16px;
+}
+
+/* Define CSS variables for color palette */
+:root {
+  /* Light mode */
+  --color-primary: #000000; /* Black */
+  --color-secondary: #000000; /* Black */
+  --color-accent: #008080; /* Teal */
+  --color-background: #ffffff; /* White */
+  --color-text: #000000; /* Black */
+  /* High contrast light mode */
+  --color-hc-primary: #000000; /* Black */
+  --color-hc-secondary: #000000; /* Black */
+  --color-hc-accent: #008080; /* Teal */
+  --color-hc-background: #ffff00; /* Yellow */
+  --color-hc-text: #000000; /* Black */
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #ffffff; /* White */
+    --color-secondary: #ffffff; /* White */
+    --color-accent: #008080; /* Teal */
+    --color-background: #121212; /* Dark Gray */
+    --color-text: #ffffff; /* White */
+    /* High contrast dark mode */
+    --color-hc-primary: #ffff00; /* Yellow */
+    --color-hc-secondary: #ffff00; /* Yellow */
+    --color-hc-accent: #ffff00; /* Yellow */
+    --color-hc-background: #000000; /* Black */
+    --color-hc-text: #ffff00; /* Yellow */
+  }
+}
+
+/* Layout foundation */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* Transitions */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+/* 3D Canvas styling */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Accessibility */
+:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+/* Media query for high contrast mode */
+@media (prefers-contrast: more) {
+  :root {
+    /* Use high contrast color values */
+     --color-primary: var(--color-hc-primary); /* Black */
+     --color-secondary: var(--color-hc-secondary); /* Black */
+     --color-accent: var(--color-hc-accent); /* Teal */
+     --color-background: var(--color-hc-background); /* Yellow */
+     --color-text: var(--color-hc-text); /* Black */
+  }
+}
+
+/* Performance optimization */
+.will-change {
+  will-change: transform, opacity;
+}
